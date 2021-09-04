@@ -24,7 +24,7 @@ app.listen(port, async () => {
         ----------------------------
         App running on port ${port}.
         Welcome to Planr
-        Go to http://localhost/${port} 
+        Go to http://localhost:${port}/
         for further API documentation
         ----------------------------
         

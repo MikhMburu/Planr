@@ -2,6 +2,7 @@
 const express = require("express");
 // Import files
 const Job = require("../../schema/Job");
+const Task = require("../../schema/Task");
 const isEmpty = require("../../utilities/isEmpty");
 // Define functions
 const router = express.Router();
@@ -87,6 +88,8 @@ router.delete("/:id", async (req, res) => {
       errmsg = "Job not found";
       return res.status(404).json({ errmsg });
     }
+    await Task.deleteMany({ job: id });
+
     await Job.findByIdAndDelete(id);
     res.json({ msg });
   } catch (err) {
