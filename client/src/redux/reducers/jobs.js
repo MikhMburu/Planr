@@ -26,7 +26,7 @@ const JobReducer = (state = initialState, action) => {
     case SET_JOB:
       return {
         ...state,
-        selected_job: state.jobs.filter((job) => job._id === action.payload),
+        selected_job: state.jobs.filter((job) => job._id === action.payload)[0],
       };
     case UNSET_JOB:
       return {

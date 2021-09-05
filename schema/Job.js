@@ -7,7 +7,7 @@ const JobSchema = new Schema({
   },
   description: {
     type: String,
-    maxlength: 50,
+    maxlength: 100,
   },
 });
 

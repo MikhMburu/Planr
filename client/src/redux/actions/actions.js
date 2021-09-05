@@ -5,6 +5,7 @@ import {
   DONE,
   FILTER_TASKS,
   LOADING,
+  RETRIEVE_JOBS,
   RETRIEVE_TASKS,
   SAVE_JOB,
   SAVE_TASK,
@@ -66,7 +67,13 @@ export const saveJob = (job) => (dispatch) => {
     payload: job,
   });
 };
-
+// Retrieve jobs
+export const retrieveJobs = (jobs) => (dispatch) => {
+  return dispatch({
+    type: RETRIEVE_JOBS,
+    payload: jobs,
+  });
+};
 // Set a job to focus
 export const setJob = (id) => (dispatch) => {
   return dispatch({

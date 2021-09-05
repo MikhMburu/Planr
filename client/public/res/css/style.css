@@ -9346,7 +9346,12 @@ body {
 
 .main .container {
   overflow-y: scroll;
-  padding-top: 50px;
+  padding-top: 10px;
+}
+
+#header-main {
+  background: #fdfdfd;
+  padding: 15px 30px;
 }
 
 .main .row {

@@ -1,10 +1,12 @@
 import { combineReducers } from "redux";
 import { DONE, LOADING } from "../types";
+import JobReducer from "./jobs";
+import TaskReducer from "./tasks";
 const initialState = {
   isLoading: false,
 };
 
-const rootReducer = (state = initialState, action) => {
+const mainReducer = (state = initialState, action) => {
   switch (action.type) {
     case LOADING:
       return {
@@ -20,5 +22,10 @@ const rootReducer = (state = initialState, action) => {
       return state;
   }
 };
+const rootReducer = combineReducers({
+  main: mainReducer,
+  jobs: JobReducer,
+  tasks: TaskReducer,
+});
 
 export default rootReducer;

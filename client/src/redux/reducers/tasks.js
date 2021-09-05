@@ -4,7 +4,6 @@ import {
   DELETE_TASK,
   RETRIEVE_TASKS,
   FILTER_TASKS,
-  RETRIEVE_A_TASK,
   UNSET_TASK,
   CLEAR_FILTER,
 } from "../types";
@@ -27,7 +26,7 @@ const TaskReducer = (state = initialState, action) => {
         ...state,
         selected_task: state.tasks.filter(
           (task) => task._id === action.payload
-        ),
+        )[0],
       };
     case UNSET_TASK:
       return {
