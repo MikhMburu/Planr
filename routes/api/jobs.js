@@ -60,7 +60,7 @@ router.get("/:id", async (req, res) => {
 // Edit a Job
 router.post("/:id", async (req, res) => {
   const { id } = req.params;
-  const { title } = req.body;
+  const { title, description } = req.body;
   const msg = "Job successfully editted";
   let errmsg;
   try {
@@ -69,7 +69,11 @@ router.post("/:id", async (req, res) => {
       errmsg = "Job not found";
       return res.status(404).json({ errmsg });
     }
-    job = await Job.findByIdAndUpdate(id, { $set: { title } }, { new: true });
+    job = await Job.findByIdAndUpdate(
+      id,
+      { $set: { title, description } },
+      { new: true }
+    );
     res.json({ msg, job });
   } catch (err) {
     errmsg = "Unable to edit job. Please check the console";

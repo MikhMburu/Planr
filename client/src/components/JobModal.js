@@ -1,19 +1,26 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import axios from "axios";
 import { bindActionCreators } from "redux";
-import { useDispatch } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import { actionCreators } from "../redux/actions";
 import M from "materialize-css/dist/js/materialize.min.js";
 
 const JobModal = () => {
-  const [title, setTitle] = useState("");
-  const [description, setDesc] = useState("");
   // Redux hooks
   const dispatch = useDispatch();
-  const { saveJob } = bindActionCreators(actionCreators, dispatch);
-  // const onChangeHandler = (e) => {
-  //   setJob({ ...job, [e.target.name]: e.target.value });
-  // };
+  const { saveJob, updateJob } = bindActionCreators(actionCreators, dispatch);
+  const selected = useSelector((state) => state.jobs.selected_job);
+
+  // Component State
+  const [title, setTitle] = useState("");
+  const [description, setDesc] = useState("");
+  useEffect(() => {
+    if (selected) {
+      setTitle(selected.title);
+      setDesc(selected.description);
+    }
+  }, [selected]);
+  // Function Definition
   const onSubmit = async (e) => {
     e.preventDefault();
     const job = { title, description };
@@ -23,13 +30,23 @@ const JobModal = () => {
           html: "Job needs a title.",
         });
       }
-      const res = await axios.post("/routes/api/jobs/create-job", job, {
-        headers: {
-          "Content-Type": "application/json",
-        },
-      });
-      saveJob(res.data.job);
-      M.toast({ html: res.data.msg });
+      if (selected) {
+        const res = await axios.post(`/routes/api/jobs/${selected._id}`, job, {
+          headers: {
+            "Content-Type": "application/json",
+          },
+        });
+        updateJob(res.data.job);
+        M.toast({ html: res.data.msg });
+      } else {
+        const res = await axios.post("/routes/api/jobs/create-job", job, {
+          headers: {
+            "Content-Type": "application/json",
+          },
+        });
+        saveJob(res.data.job);
+        M.toast({ html: res.data.msg });
+      }
       setTitle("");
       setDesc("");
     } catch (err) {

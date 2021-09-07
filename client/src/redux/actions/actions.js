@@ -1,9 +1,12 @@
 import {
+  AWAITING_JOBS,
+  AWAITING_TASKS,
   CLEAR_FILTER,
   DELETE_JOB,
   DELETE_TASK,
   DONE,
   FILTER_TASKS,
+  JOBS_DONE,
   LOADING,
   RETRIEVE_JOBS,
   RETRIEVE_TASKS,
@@ -11,8 +14,11 @@ import {
   SAVE_TASK,
   SET_JOB,
   SET_TASK,
+  TASKS_DONE,
   UNSET_JOB,
   UNSET_TASK,
+  UPDATE_JOB,
+  UPDATE_TASKS,
 } from "../types";
 // Save a task
 export const saveTask = (task) => (dispatch) => {
@@ -60,6 +66,25 @@ export const clearFilter = () => (dispatch) => {
     type: CLEAR_FILTER,
   });
 };
+// Tasks Loading
+export const startTasks = () => (dispatch) => {
+  return dispatch({
+    type: AWAITING_TASKS,
+  });
+};
+// Tasks done loading
+export const finishTasks = () => (dispatch) => {
+  return dispatch({
+    type: TASKS_DONE,
+  });
+};
+// Update a task
+export const updateTask = (task) => (dispatch) => {
+  return dispatch({
+    type: UPDATE_TASKS,
+    payload: task,
+  });
+};
 // Save a job
 export const saveJob = (job) => (dispatch) => {
   return dispatch({
@@ -91,6 +116,25 @@ export const deleteJob = (id) => (dispatch) => {
   return dispatch({
     type: DELETE_JOB,
     payload: id,
+  });
+};
+// Jobs Loading
+export const startJobs = () => (dispatch) => {
+  return dispatch({
+    type: AWAITING_JOBS,
+  });
+};
+// Jobs done loading
+export const finishJobs = () => (dispatch) => {
+  return dispatch({
+    type: JOBS_DONE,
+  });
+};
+// Update Job
+export const updateJob = (job) => (dispatch) => {
+  return dispatch({
+    type: UPDATE_JOB,
+    payload: job,
   });
 };
 // App loading

@@ -8,7 +8,7 @@ import { actionCreators } from "../redux/actions";
 const TaskModal = () => {
   // Redux state
   const dispatch = useDispatch();
-  const { saveTask, deleteTask, unsetTask } = bindActionCreators(
+  const { saveTask, unsetTask, updateTask } = bindActionCreators(
     actionCreators,
     dispatch
   );
@@ -53,8 +53,9 @@ const TaskModal = () => {
             },
           }
         );
-        deleteTask(selected_task._id);
-        saveTask(res.data.task);
+        // deleteTask(selected_task._id);
+        // saveTask(res.data.task);
+        updateTask(res.data.task);
         M.toast({ html: res.data.msg });
         setTitle("");
         setTo("");

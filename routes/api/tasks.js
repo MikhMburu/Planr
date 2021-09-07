@@ -122,5 +122,24 @@ router.delete("/:id", async (req, res) => {
     console.log(errmsg, "\n", err);
   }
 });
+// Delete many
+router.delete("/delete-many/:job", async (req, res) => {
+  const { job } = req.params;
+  let msg;
+  const errmsg = "INTERNAL ERROR: Unable to delete tasks";
+  try {
+    let tasks;
+    tasks = await Task.find({ job });
+    // if (isEmpty(tasks)) {
+    //   msg = "No tasks found under this job";
+    //   return res.status(404).json({ msg });
+    // }
+    await Task.deleteMany({ job });
+    msg = `${tasks.length} tasks deleted`;
+    res.json({ msg });
+  } catch (err) {
+    res.status(400).json({ errmsg });
+  }
+});
 // export router
 module.exports = router;

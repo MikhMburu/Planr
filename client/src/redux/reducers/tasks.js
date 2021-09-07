@@ -1,3 +1,4 @@
+import update from "react-addons-update";
 import {
   SAVE_TASK,
   SET_TASK,
@@ -6,9 +7,13 @@ import {
   FILTER_TASKS,
   UNSET_TASK,
   CLEAR_FILTER,
+  AWAITING_TASKS,
+  TASKS_DONE,
+  UPDATE_TASKS,
 } from "../types";
 
 const initialState = {
+  isLoading: false,
   tasks: [],
   selected_task: null,
   filtered: [],
@@ -54,6 +59,24 @@ const TaskReducer = (state = initialState, action) => {
         ...state,
         filtered: [],
       };
+    case AWAITING_TASKS:
+      return {
+        ...state,
+        isLoading: true,
+      };
+    case TASKS_DONE:
+      return {
+        ...state,
+        isLoading: false,
+      };
+    case UPDATE_TASKS:
+      return update(state, {
+        tasks: {
+          [state.tasks.findIndex((task) => task._id === action.payload._id)]: {
+            $set: action.payload,
+          },
+        },
+      });
     default:
       return state;
   }
