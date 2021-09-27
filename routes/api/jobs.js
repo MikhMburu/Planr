@@ -9,11 +9,11 @@ const router = express.Router();
 // Define routes
 // Create Job
 router.post("/create-job", async (req, res) => {
-  const { title, description } = req.body;
+  const { title, description, start, end } = req.body;
   const msg = "Job successfully created";
   let errmsg;
   try {
-    const newJob = new Job({ title, description });
+    const newJob = new Job({ title, description, start, end });
     const job = await newJob.save();
     res.json({ msg, job });
   } catch (err) {
@@ -60,7 +60,7 @@ router.get("/:id", async (req, res) => {
 // Edit a Job
 router.post("/:id", async (req, res) => {
   const { id } = req.params;
-  const { title, description } = req.body;
+  const { title, description, start, end } = req.body;
   const msg = "Job successfully editted";
   let errmsg;
   try {
@@ -71,7 +71,7 @@ router.post("/:id", async (req, res) => {
     }
     job = await Job.findByIdAndUpdate(
       id,
-      { $set: { title, description } },
+      { $set: { title, description, start, end } },
       { new: true }
     );
     res.json({ msg, job });

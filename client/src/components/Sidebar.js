@@ -4,11 +4,12 @@ import JobItem from "./JobItem";
 import { bindActionCreators } from "redux";
 import M from "materialize-css/dist/js/materialize.min.js";
 import { useSelector, useDispatch } from "react-redux";
+import Clock from "react-clock";
 import { actionCreators } from "../redux/actions";
 import Loader from "./Loader";
 import isEmpty from "../utilities/isEmpty";
 
-const Sidebar = () => {
+const Sidebar = ({ time }) => {
   // Redux
   const dispatch = useDispatch();
   const { retrieveJobs, startJobs, finishJobs } = bindActionCreators(
@@ -38,8 +39,10 @@ const Sidebar = () => {
   return (
     <div className="sidebar hide-on-small-and-down">
       <div className="panel">
-        <h2>PLANR</h2>
-        The time now is 12.25am
+        <h4>PLANR</h4>
+        <div id="clock">
+          <Clock size={250} renderNumbers={true} value={time} />
+        </div>
       </div>
       <div id="jobs">
         <h3>Jobs</h3>

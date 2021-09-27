@@ -4,8 +4,10 @@ import { bindActionCreators } from "redux";
 import { useDispatch } from "react-redux";
 import axios from "axios";
 import { actionCreators } from "../redux/actions";
-import M from "materialize-css/dist/js/materialize.min.js";
-const Task = ({ task }) => {
+import M from "materialize-css";
+import Progress from "./Progress";
+
+const Task = ({ task, time }) => {
   // Component state
   // Redux
   const dispatch = useDispatch();
@@ -51,18 +53,16 @@ const Task = ({ task }) => {
               <div className="col m4 grey-text text-darken-1 ">
                 <span>
                   Start:{"  "}
-                  <Moment format="Do MMM, YYYY">{task.from}</Moment>
+                  <Moment format="Do MMM, YYYY h:mma">{task.from}</Moment>
                 </span>
                 <span>
                   End:{"  "}
-                  <Moment format="Do MMM, YYYY">{task.to}</Moment>
+                  <Moment format="Do MMM, YYYY h:mma">{task.to}</Moment>
                 </span>
               </div>
             </div>
 
-            <div className="progress">
-              <div className="determinate" style={{ width: "70%" }}></div>
-            </div>
+            <Progress start={task.from} end={task.to} current_time={time} />
           </div>
         </div>
       </div>

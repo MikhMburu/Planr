@@ -1,16 +1,24 @@
 const { Schema, model } = require("mongoose");
 
+const DateSchema = new Schema({
+  year: Number,
+  month: Number,
+  day: Number,
+  hour: Number,
+  minute: Number,
+});
+
 const TaskSchema = new Schema({
   title: {
     type: String,
     required: true,
   },
   from: {
-    type: String,
+    type: DateSchema,
     required: true,
   },
   to: {
-    type: String,
+    type: DateSchema,
     required: true,
   },
   job: {
@@ -20,6 +28,10 @@ const TaskSchema = new Schema({
   description: {
     type: String,
     maxlength: 100,
+  },
+  completed: {
+    type: Boolean,
+    default: false,
   },
 });
 

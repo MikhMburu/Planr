@@ -1,5 +1,6 @@
 // Import libraries
-import M from "materialize-css/dist/js/materialize.min.js";
+import M from "materialize-css";
+import "react-clock/dist/Clock.css";
 import { useEffect, useState } from "react";
 import { bindActionCreators } from "redux";
 import { useDispatch, useSelector } from "react-redux";
@@ -30,9 +31,12 @@ function App() {
 
   // React state
   const [tasks, setTasks] = useState([]);
+  const [now, setNow] = useState(new Date());
+
   useEffect(() => {
     M.AutoInit();
   }, []);
+
   useEffect(() => {
     startTasks();
     axios
@@ -50,6 +54,11 @@ function App() {
 
     // eslint-disable-next-line
   }, []);
+  useEffect(() => {
+    const interval = setInterval(() => setNow(new Date()), 1000);
+
+    return () => clearInterval(interval);
+  }, []);
 
   useEffect(() => {
     if (selected) {
@@ -61,10 +70,10 @@ function App() {
   // Main
   return (
     <section className="dashboard">
-      <Sidebar />
+      <Sidebar time={now} />
       <Main>
         {!isLoading ? (
-          tasks.map((task) => <Task key={task._id} task={task} />)
+          tasks.map((task) => <Task key={task._id} task={task} time={now} />)
         ) : (
           <Loader />
         )}

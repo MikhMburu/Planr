@@ -78,7 +78,7 @@ router.get("/:id", async (req, res) => {
 // Edit a task
 router.post("/:id", async (req, res) => {
   const { id } = req.params;
-  const { title, to, from, job, description } = req.body;
+  const { title, to, from, job, description, completed } = req.body;
   const msg = "Task successfully editted.";
   let errmsg;
   try {
@@ -90,7 +90,7 @@ router.post("/:id", async (req, res) => {
     } else {
       task = await Task.findByIdAndUpdate(
         id,
-        { $set: { title, to, from, job, description } },
+        { $set: { title, to, from, job, description, completed } },
         { new: true }
       );
       res.json({ msg, task });

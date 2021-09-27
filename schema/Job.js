@@ -9,6 +9,12 @@ const JobSchema = new Schema({
     type: String,
     maxlength: 100,
   },
+  start: {
+    type: String,
+  },
+  end: {
+    type: String,
+  },
 });
 
 module.exports = Job = model("job", JobSchema);

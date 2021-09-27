@@ -1,5 +1,6 @@
 @import url("https://fonts.googleapis.com/css2?family=Lato:wght@400&display=swap");
 @import url("https://fonts.googleapis.com/css2?family=Poppins:wght@300&display=swap");
+@import url("https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Ubuntu:wght@500&display=swap");
 .materialize-red {
   background-color: #e51c23 !important;
 }
@@ -5663,7 +5664,7 @@ button.btn-floating {
   cursor: pointer;
   min-height: 50px;
   line-height: 1.5rem;
-  width: 100%;
+  /* width: 100%; */
   text-align: left;
 }
 
@@ -5685,7 +5686,7 @@ button.btn-floating {
 .dropdown-content li > span {
   font-size: 16px;
   color: #26a69a;
-  display: block;
+  /* display: block; */
   line-height: 22px;
   padding: 14px 16px;
 }
@@ -7305,7 +7306,7 @@ select.browser-default {
 
 select {
   background-color: rgba(255, 255, 255, 0.9);
-  width: 100%;
+  /* width: 100%; */
   padding: 5px;
   border: 1px solid #f2f2f2;
   border-radius: 2px;
@@ -7322,7 +7323,7 @@ select {
 
 .select-wrapper.valid + label,
 .select-wrapper.invalid + label {
-  width: 100%;
+  /* width: 100%; */
   pointer-events: none;
 }
 
@@ -7335,11 +7336,11 @@ select {
   outline: none;
   height: 3rem;
   line-height: 3rem;
-  width: 100%;
+  /* width: 100%; */
   font-size: 16px;
   margin: 0 0 8px 0;
   padding: 0;
-  display: block;
+  display: inline;
   -webkit-user-select: none;
   -moz-user-select: none;
   -ms-user-select: none;
@@ -8919,14 +8920,14 @@ input[type="range"]::-ms-thumb {
 }
 
 .datepicker-date-display .year-text {
-  display: block;
+  /* display: block; */
   font-size: 1.5rem;
   line-height: 25px;
   color: rgba(255, 255, 255, 0.7);
 }
 
 .datepicker-date-display .date-text {
-  display: block;
+  /* display: block; */
   font-size: 2.8rem;
   line-height: 47px;
   font-weight: 500;
@@ -8987,7 +8988,7 @@ input[type="range"]::-ms-thumb {
   background-color: transparent;
   border: none;
   line-height: 38px;
-  display: block;
+  /* display: block; */
   width: 100%;
   border-radius: 50%;
   padding: 0 5px;
@@ -9317,23 +9318,66 @@ body {
 .sidebar {
   background: #bfbabc;
   min-width: 20%;
-  padding: 1rem;
+  /* padding: 1rem 0; */
 }
 
 .panel {
-  color: #737373;
+  color: #364758;
+  background: #bfbabc;
+  display: flex;
+  flex-direction: column;
+  /* align-content: center; */
+  /* border: 1px solid red; */
+  justify-content: center;
+  justify-items: center;
+  padding: 0 10px;
 }
-
-.panel h2 {
-  font-weight: 500;
+.date-picker {
+  display: flex;
   text-align: center;
-  margin-top: 2px;
-  text-decoration: underline;
+  align-content: center;
+}
+.date-picker span {
+  font-size: 25px;
+}
+#clock {
+  /* border: 1px solid red; */
+  border-top: 3px solid #364758;
+  border-bottom: 10px solid #a6330a;
+  display: flex;
+  justify-content: center;
+  padding: 1rem;
+  background: rgb(252, 251, 252);
+  background: -moz-radial-gradient(
+    circle,
+    rgba(252, 251, 252, 1) 0%,
+    rgba(191, 186, 188, 1) 100%
+  );
+  background: -webkit-radial-gradient(
+    circle,
+    rgba(252, 251, 252, 1) 0%,
+    rgba(191, 186, 188, 1) 100%
+  );
+  background: radial-gradient(
+    circle,
+    rgba(252, 251, 252, 1) 0%,
+    rgba(191, 186, 188, 1) 100%
+  );
+  filter: progid:DXImageTransform.Microsoft.gradient(startColorstr="#fcfbfc",endColorstr="#bfbabc",GradientType=1);
+}
+.panel h4 {
+  font-family: "Bebas Neue", cursive;
+  /* border: 1px solid red; */
+  font-weight: 700;
+  text-align: center;
+  margin-top: 5px;
+  margin-bottom: 0;
+  /* text-decoration: underline; */
 }
 
 #jobs h3 {
   text-align: center;
-  color: #a6330a;
+  color: #862806;
   margin-bottom: 2px;
 }
 
@@ -9409,7 +9453,31 @@ body {
   padding-left: 3px;
   cursor: pointer;
 }
-
+#add-task .modal,
+#add-job .modal {
+  height: 80%;
+  width: 100%;
+}
+#add-task,
+#add-job {
+  background: rgb(252, 251, 252);
+  background: -moz-linear-gradient(
+    90deg,
+    rgba(252, 251, 252, 1) 0%,
+    rgba(231, 221, 225, 1) 100%
+  );
+  background: -webkit-linear-gradient(
+    90deg,
+    rgba(252, 251, 252, 1) 0%,
+    rgba(231, 221, 225, 1) 100%
+  );
+  background: linear-gradient(
+    90deg,
+    rgba(252, 251, 252, 1) 0%,
+    rgba(231, 221, 225, 1) 100%
+  );
+  filter: progid:DXImageTransform.Microsoft.gradient(startColorstr="#fcfbfc",endColorstr="#e7dde1",GradientType=1);
+}
 .main .card-panel ul li:hover {
   color: blue;
 }
@@ -9422,4 +9490,16 @@ body {
   background: #090a0d;
   color: #d9d7d8;
   min-height: 20vh;
+}
+::-webkit-datetime-edit-year-field:not([aria-valuenow]),
+::-webkit-datetime-edit-month-field:not([aria-valuenow]),
+::-webkit-datetime-edit-day-field:not([aria-valuenow]) {
+  color: transparent;
+}
+.mdl-textfield:not(.is-dirty) input::-webkit-datetime-edit {
+  color: transparent;
+}
+
+input:focus::-webkit-datetime-edit {
+  color: rgba(255, 255, 255, 0.46) !important;
 }
